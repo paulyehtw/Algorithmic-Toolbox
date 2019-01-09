@@ -42,6 +42,38 @@ int lcs2(vector<int> &a, vector<int> &b) {
   return lcs;
 }
 
+int lcs2_naive(vector<int> &a, vector<int> &b) {
+  vector<int> s;
+  vector<int> l;
+  int i;
+  if(a.size() > b.size()){
+    s = b;
+    l = a;
+    }
+  else{
+    s = a;
+    l = b;
+    }
+  int lcs = 0;
+  int idx = 0;
+  while(idx < l.size() && s.size() > 0){
+    //cout<<"s size is "<<s.size()<<endl;
+    for(i = idx; i < l.size();i++){
+      if(l[i] == s[0]){
+        lcs++;
+        s.erase(s.begin());
+        idx = i + 1;
+/*         cout<<"same"<<endl;
+        cout<<"s size is "<<s.size()<<endl;
+        cout<<"idx now is "<<idx<<endl; */
+        break;
+      }
+    }
+    if(i == l.size() && l[i] != s[0]){s.erase(s.begin());/* cout<<"no match"<<endl;cout<<"s size is "<<s.size()<<endl<<endl; */}
+  }
+  return lcs;
+}
+
 int main() {
   size_t n;
   std::cin >> n;
@@ -55,5 +87,6 @@ int main() {
   for (size_t i = 0; i < m; i++) {
     std::cin >> b[i];
   }
-  std::cout << lcs2(a, b) << std::endl;
+  //std::cout << lcs2(a, b) << std::endl;
+  std::cout << lcs2_naive(a, b) << std::endl;
 }
