@@ -6,8 +6,7 @@ using namespace std;
 
 int optimal_weight(int W, const vector<int> &w) {
     int i,j;
-    vector<vector<int> > M(w.size()+1);
-    for(i=0;i<w.size()+1;i++){M[i].resize(W+1);}
+    vector< vector<int> > M(w.size()+1, vector<int> (W+1, 0));
     for(i = 1; i <= w.size(); i++){
         for(j = 1; j <= W; j++){
             if(w[i-1] > j){M[i][j] = M[i-1][j];}
